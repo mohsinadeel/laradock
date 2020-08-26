@@ -1171,6 +1171,19 @@ RUN if [ ${INSTALL_MAILPARSE} = true ]; then \
     apt-get install -yqq php-mailparse \
 ;fi
 
+
+###########################################################################
+# MCRYPT:
+###########################################################################
+
+ARG INSTALL_MCRYPT=false
+
+RUN if [ ${INSTALL_MCRYPT} = true ]; then \
+    apt-get -y install libmcrypt-dev && \
+    pecl install mcrypt-1.0.2 && \
+    echo "extension=mcrypt.so" >> /etc/php/${LARADOCK_PHP_VERSION}/cli/php.ini && \
+    php -m | grep -q 'mcrypt' \
+;fi
 ###########################################################################
 # GNU Parallel:
 ###########################################################################

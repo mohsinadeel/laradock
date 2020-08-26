@@ -1,1 +1,5 @@
-docker-compose up -d workspace nginx mysql phpmyadmin redis grafana mailcatcher
+docker-compose up -d workspace nginx mysql phpmyadmin redis mailcatcher grafana libreoffice
+
+docker-compose exec {container-name} bash
+
+docker-compose logs -f -t {container-name}

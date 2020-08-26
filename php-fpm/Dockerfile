@@ -798,6 +798,29 @@ RUN if [ ${INSTALL_CACHETOOL} = true ]; then \
     mv cachetool.phar /usr/local/bin/cachetool \
 ;fi
 
+
+###########################################################################
+# MCRYPT:
+###########################################################################
+
+ARG INSTALL_MCRYPT=false
+
+RUN if [ ${INSTALL_MCRYPT} = true ]; then \
+    apt-get -y install libmcrypt-dev && \
+    pecl install mcrypt-1.0.2 && \
+    docker-php-ext-enable mcrypt  \
+;fi
+
+###########################################################################
+# POSTFIX:
+###########################################################################
+
+ARG INSTALL_POSTFIX=false
+
+RUN if [ ${INSTALL_POSTFIX} = true ]; then \
+    apt-get -y install postfix \
+;fi
+
 ###########################################################################
 # Check PHP version:
 ###########################################################################
